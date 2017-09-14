@@ -22,12 +22,11 @@ router.get('/login',(req,res)=>{
 //post signup
 router.post('/signup',(req,res) =>{
     let acount = req.body;
-    let matkhau2 = req.body.lapmatkhau;
+    let password2 = req.body.password2;
     let password = req.body.PassWord;
     let email = req.body.Email;
     let username = req.body.UserName;
-
-    var Invalid = Acount.check(matkhau2,password,username,email,Acount);
+    var Invalid = Acount.check(password2,password,username,email,Acount);
     //signup success
     if(Invalid == true){
     	res.redirect('/');

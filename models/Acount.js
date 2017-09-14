@@ -41,11 +41,11 @@ module.exports.addAcount= (acountNew,limit) =>{
 	});
 };
 
-module.exports.check =(PASS,PASS2,User,PassW,E,limit)=>{
+module.exports.check =(PASS,PASS2,User,E,limit)=>{
 	if(PASS == PASS2 ){
 		var acountNew = new acount({
 			UserName:User,
-			PassWord:PassW,
+			PassWord:PASS,
 			Email:E
 		});
 		

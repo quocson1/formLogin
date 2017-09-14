@@ -1,7 +1,7 @@
-var passport = require('passport');
+//var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var Acount = require('../models/Acount');
-
+module.exports = function(passport){
 passport.use(new LocalStrategy(
   function(username, password, done) {
   	Acount.getUserByUsername(username,(err,user)=>{
@@ -30,4 +30,5 @@ passport.deserializeUser(function(id, done) {
     done(err, user);
   });
 });
+}
 
