@@ -1,16 +1,8 @@
-var mongoose = require('mongoose');
+
 var bcrypt =require('bcryptjs');
-//bill Schema
-var receiptSchema = new mongoose.Schema({
-	UserName:{type:String, index:true},
-	PassWord:{type:String,select:true},
-	Email:{type:String,index:true}
+var acount = require('./dbAcount');
 
-});
-
-
-var acount = module.exports = mongoose.model('acount',receiptSchema);
-//module.exports = AC;
+//create UserName
 var createUserName = module.exports.createUser = (newUser,callback)=>{
 	bcrypt.genSalt(10,(err,salt)=>{
 		bcrypt.hash(newUser.PassWord,salt,(err,hash)=>{
@@ -20,27 +12,27 @@ var createUserName = module.exports.createUser = (newUser,callback)=>{
 	});
 };
 
+//get User by UserName
 module.exports.getUserByUsername= (username,callback) =>{
 	var query ={UserName: username};
 	acount.findOne(query,callback);
 }
 
+//get User by ID
 module.exports.getUserById= (id,callback) =>{
 	acount.findById(id,callback);
 }
 
+//decryption compare password present vs password BD 
 module.exports.comparePassword = (candidatePassword,hash,callback)=>{
 	bcrypt.compare(candidatePassword, hash, function(err, isMatch) {
 		if(err) throw err;
 		callback(null,isMatch);
 });
 }
-module.exports.addAcount= (acountNew,limit) =>{
-	return new Promise((resolve,resject) => {
-		resolve(acount.create(acountNew,limit))
-	});
-};
 
+
+// check Invalid and create UserName encode password
 module.exports.check =(PASS,PASS2,User,E,limit)=>{
 	if(PASS == PASS2 ){
 		var acountNew = new acount({
