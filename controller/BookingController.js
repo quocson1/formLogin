@@ -1,4 +1,4 @@
-var booking = require('../models/ModuleBooking');
+var booking = require('../models/ModelBooking');
 const data = require('../models/Data');
 
 
