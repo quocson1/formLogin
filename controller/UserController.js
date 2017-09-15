@@ -1,5 +1,6 @@
 var passport = require('passport');
 var Acount = require('../models/Acount');
+var ac = require('../models/Data');
 //display HomePage
 exports.HomePage = (req,res) =>{
 	res.send('xin chao ban ');
@@ -8,7 +9,8 @@ exports.HomePage = (req,res) =>{
 //Handle Genre login
 exports.Login = passport.authenticate('local', {successRedirect:'/', failureRedirect: '/login',failureFlash:true }),
 	(req,res) =>{
-		res.redirect('/');
+		//res.redirect('/');
+        res.send('ban da dang nhap thanh cong')
 }	
 
 //DisPlay Logout
@@ -19,18 +21,26 @@ exports.Logout = (req,res) =>{
 //Handle Genre SignUp
 exports.Signup = (req,res) => {
 	let acount = req.body;
-    let password2 = req.body.password2;
+    let password2 = req.body.PassWord2;
     let password = req.body.PassWord;
     let email = req.body.Email;
     let username = req.body.UserName;
-    var Invalid = Acount.check(password2,password,username,email,Acount);
-    //signup success
-    if(Invalid == true){
-    	res.redirect('/');
+    if(password2 == password){
+        var acountNew = new ac({
+            UserName:username,
+            PassWord:password,
+            Email:email
+        });
+        
+        Acount.createUser(acountNew,(err,user)=>{
+            if(err) throw err;
+            //
+        })
+         res.send("dang ky thanh cong");
     }
-    //fail
+
     else{
-    	res.render('signup');
+        res.send("xin vui long nhap lai");
     }
 }
 

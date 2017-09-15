@@ -6,7 +6,8 @@ const cons = require('consolidate');
 const router = express.Router();
 const index = require('./routes/index') (router);
 const passport = require('passport');
-
+var flash = require('connect-flash');
+var session = require('express-session');
 
 var mongoose = require('mongoose');
 
@@ -22,16 +23,19 @@ app.set('view engine', 'ejs');
 
 // Passport init
 app.use(passport.initialize());
-app.use(passport.session())
-
+app.use(passport.session());
+app.use(session({ cookie: { maxAge: 60000 }, 
+                  secret: 'woot',
+                  resave: false, 
+                  saveUninitialized: false}));
 //use body
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
-
+app.use(flash());
 //exports 
 app.use('/',(router));
 
-require('./routes/passport.js')(passport);
+require('./controller/PassportController.js')(passport);
 
 
 //connect
