@@ -1,6 +1,7 @@
 var passport = require('passport');
-var Acount = require('../models/Acount');
+var Acount = require('../models/ModuleAcount');
 var ac = require('../models/Data');
+
 //display HomePage
 exports.HomePage = (req,res) =>{
 	res.send('xin chao ban ');
@@ -26,7 +27,7 @@ exports.Signup = (req,res) => {
     let email = req.body.Email;
     let username = req.body.UserName;
     if(password2 == password){
-        var acountNew = new ac({
+        var acountNew = new ac.acount({
             UserName:username,
             PassWord:password,
             Email:email

@@ -1,18 +1,46 @@
-var booking = require('../models/Booking');
+var booking = require('../models/ModuleBooking');
 const data = require('../models/Data');
 
-function getUserById (id,callback) {
-  Acount.findById(id,callback);
+
+var Acount = data.acount;
+
+
+//exports insert
+exports.insert = (req,res) => {
+	let book = req.body;
+	console.log(book);
+    booking.AddBook(book).then((Book) =>    
+        (err) => res.send(err + ''));
 }
 
-exports.Booking = (req,res) => {
-	let Place = req.body.Place;
-    let AmountfPeople = req.body.AmountfPeople;
-    let id = req.body.User_id;
-    // if id =data.id {
-    	//Get data from login id
 
-    //}
 
-    //else Capture user input
+
+//update Place
+exports.UdatePlace = function(req,res){
+	let xphone = req.body.Phone;
+	let NewPlace = req.body.NewPlace;
+	booking.UdatePlaceByPhone(xphone,NewPlace);
+	
+
 }
+
+
+exports.UpdateAmountfPeople = function(req,res){
+	let xphone = req.body.Phone;
+	let NewAmountfPeople = req.body.NewAmountfPeople;
+	booking.UdateAmountfPeopleByPhone(xphone,NewAmountfPeople);
+
+}
+
+
+
+exports.delete = function(req,res){
+	let xphone = req.body.Phone;
+	console.log(xphone);
+	booking.DeleteOneBookByPhone(xphone);
+
+}
+
+
+

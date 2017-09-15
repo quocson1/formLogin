@@ -5,6 +5,7 @@ var mongoose = require('mongoose');
 var User = new mongoose.Schema({
 	UserName:{type:String, index:true},
 	PassWord:{type:String,select:true},
+	NumberPhone:{type:Number},
 	Email:{type:String,index:true}
 
 });
@@ -13,12 +14,15 @@ var User = new mongoose.Schema({
 var Booking = new mongoose.Schema({
 
 	User_id:{type:String, index:true},
+	Name:{type:String},
+	Phone:{type:Number},
+	Email:{type:String},
 	Place:{type:String,select:true},
 	AmountfPeople:{type:Number,index:true}
 
 })
 //export data acount
-var acount = module.exports = mongoose.model('acount',User);
+module.exports.acount = mongoose.model('acount',User);
 
 //export data Booking
-var Book = module.exports = mongoose.model('Book,',Booking);
+module.exports.Book = mongoose.model('Book',Booking);

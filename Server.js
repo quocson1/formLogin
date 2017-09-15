@@ -4,7 +4,8 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const cons = require('consolidate');
 const router = express.Router();
-const index = require('./routes/index') (router);
+
+//const index = require('./routes/index') (router);
 const passport = require('passport');
 var flash = require('connect-flash');
 var session = require('express-session');
@@ -33,7 +34,12 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(flash());
 //exports 
+require('./routes/index') (router);
+require('./routes/booking')(router);
 app.use('/',(router));
+
+
+//app.use('/',(router1));
 
 require('./controller/PassportController.js')(passport);
 

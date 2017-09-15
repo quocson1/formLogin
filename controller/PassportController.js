@@ -1,7 +1,11 @@
 const LocalStrategy = require('passport-local').Strategy;
-const Acount = require('../models/Data');
+const ac = require('../models/Data');
 var bcrypt =require('bcryptjs');
 module.exports = function(passport){
+
+
+//use acount in data
+var Acount = ac.acount;
 
 //get User by UserName
 function getUserByUsername(username,callback){
