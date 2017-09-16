@@ -3,24 +3,24 @@ var Acount = require('../models/ModelAcount');
 var ac = require('../models/Data');
 
 //display HomePage
-exports.HomePage = (req,res) =>{
+exports.HomePage = function(req,res){
 	res.send('xin chao ban ');
 }
 
 //Handle Genre login
 exports.Login = passport.authenticate('local', {successRedirect:'/', failureRedirect: '/login',failureFlash:true }),
-	(req,res) =>{
+	function(req,res){
 		//res.redirect('/');
         res.send('ban da dang nhap thanh cong')
 }	
 
 //DisPlay Logout
-exports.Logout = (req,res) =>{
+exports.Logout = function(req,res){
 	res.send('see you again :)');
 }
 
 //Handle Genre SignUp
-exports.Signup = (req,res) => {
+exports.Signup = function(req,res) {
 	let acount = req.body;
     let password2 = req.body.PassWord2;
     let password = req.body.PassWord;
@@ -33,7 +33,7 @@ exports.Signup = (req,res) => {
             Email:email
         });
         
-        Acount.createUser(acountNew,(err,user)=>{
+        Acount.createUser(acountNew,function(err,user){
             if(err) throw err;
             //
         })

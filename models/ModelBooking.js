@@ -3,7 +3,7 @@ let booking = book.Book;
 
 //module insert
 module.exports.AddBook= (book,limit) =>{
-	return new Promise((resolve,resject) => {
+	return new Promise(function(resolve,resject) {
 		resolve(booking.create(book,limit));
 		
 	});
@@ -13,7 +13,7 @@ module.exports.AddBook= (book,limit) =>{
 
 //module update Place by NumberPhone
 module.exports.UdatePlaceByPhone = function(xphone,place){
-	return new Promise((resolve,resject) =>{
+	return new Promise(function(resolve,resject){
 		let query = {Phone:xphone};
 		let update = {
 
@@ -25,7 +25,7 @@ module.exports.UdatePlaceByPhone = function(xphone,place){
 
 //module update Amountf Peoole By Phone
 module.exports.UdateAmountfPeopleByPhone= function(xphone,amountfpeople){
-	return new Promise((resolve,resject) =>{
+	return new Promise(function(resolve,resject){
 		let query = {Phone:xphone};
 		let update = {
 			AmountfPeople:amountfpeople
@@ -38,7 +38,7 @@ module.exports.UdateAmountfPeopleByPhone= function(xphone,amountfpeople){
 
 //module delete Booking
 module.exports.DeleteOneBookByPhone= function(phone){
-	return new Promise((resolve,resject) =>{
+	return new Promise(function(resolve,resject){
 		let query ={Phone:phone};
 		resolve(booking.remove(query));
 	});

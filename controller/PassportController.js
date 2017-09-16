@@ -29,13 +29,13 @@ function getUserById (id,callback) {
 passport.use(new LocalStrategy(
   function(UserName, PassWord, done) {
     //get User by UserName
-  	getUserByUsername(UserName,(err,user)=>{
+  	getUserByUsername(UserName,function(err,user){
   		if(err) throw err;
   		if(!user){
   			return done(null,false,console.log(UserName));
   		}
       //compare pass now and password DB
-  		comparePassword(PassWord,user.PassWord,(err,isMatch)=>{
+  		comparePassword(PassWord,user.PassWord,function(err,isMatch){
   			if(err) throw err;
   			if(isMatch){
           console.log(user._id);

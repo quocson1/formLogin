@@ -6,10 +6,10 @@ var Acount = data.acount;
 
 
 //exports insert
-exports.insert = (req,res) => {
+exports.insert = function(req,res) {
 	let book = req.body;
 	console.log(book);
-    booking.AddBook(book).then((Book) =>    
+    booking.AddBook(book).then(function(Book)    
         (err) => res.send(err + ''));
 }
 
