@@ -1,6 +1,6 @@
 var passport = require('passport');
-var Acount = require('../models/ModelAcount');
-var ac = require('../models/Data');
+var Acount = require('../models/User/ModelUser');
+var ac = require('../models/User/Data');
 
 //display HomePage
 exports.HomePage = function(req,res){

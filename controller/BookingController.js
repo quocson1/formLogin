@@ -1,16 +1,13 @@
-var booking = require('../models/ModelBooking');
-const data = require('../models/Data');
+var booking = require('../models/Booking/ModelBooking');
 
-
-var Acount = data.acount;
 
 
 //exports insert
 exports.insert = function(req,res) {
 	let book = req.body;
 	console.log(book);
-    booking.AddBook(book).then(function(Book)    
-        (err) => res.send(err + ''));
+    booking.AddBook(book).then(function(Book)  {
+        (err) => res.send(err + '')});
 }
 
 

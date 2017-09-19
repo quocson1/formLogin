@@ -34,7 +34,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(flash());
 //exports 
-require('./routes/index') (router);
+require('./routes/user') (router);
 require('./routes/booking')(router);
 app.use('/',(router));
 
