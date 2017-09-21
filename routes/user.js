@@ -10,7 +10,14 @@ router.post('/signup',UserController.Signup);
 //post login
 router.post('/login',UserController.Login);
 
+//get err login
+router.get('/login',UserController.getLogin);
+
 //logout
 router.get('/Logout',UserController.Logout);
 };
+
+
+
+
 

@@ -10,6 +10,9 @@ var User = new mongoose.Schema({
 
 });
 
+
+
+
 //export data acount
 module.exports.acount = mongoose.model('acount',User);
 

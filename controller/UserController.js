@@ -7,12 +7,17 @@ exports.HomePage = function(req,res){
 	res.send('xin chao ban ');
 }
 
+//get fail login 
+exports.getLogin = (req,res) =>{
+    let err = req.flash().mes ;
+    res.send(err);
+}
+
+
+        
 //Handle Genre login
-exports.Login = passport.authenticate('local', {successRedirect:'/', failureRedirect: '/login',failureFlash:true }),
-	function(req,res){
-		//res.redirect('/');
-        res.send('ban da dang nhap thanh cong')
-}	
+exports.Login = passport.authenticate('local', {successRedirect:'/', failureRedirect: '/login',failureFlash:true });
+	
 
 //DisPlay Logout
 exports.Logout = function(req,res){
