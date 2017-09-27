@@ -7,10 +7,8 @@ exports.HomePage = function(req,res){
 	res.send('xin chao ban ');
 }
 
-//get fail login 
-exports.getLogin = (req,res) =>{
-    let err = req.flash().mes ;
-    res.send(err);
+exports.getLogin = (req,res)=>{
+    res.send('sai ten dang nhap vui long nhap lai ');
 }
 
 
@@ -26,11 +24,10 @@ exports.Logout = function(req,res){
 
 //Handle Genre SignUp
 exports.Signup = function(req,res) {
-	let acount = req.body;
+    let username = req.body.UserName;
     let password2 = req.body.PassWord2;
     let password = req.body.PassWord;
     let email = req.body.Email;
-    let username = req.body.UserName;
     if(password2 == password){
         var acountNew = new ac.acount({
             UserName:username,

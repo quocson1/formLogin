@@ -2,8 +2,7 @@ var book = require('../controller/BookingController');
 module.exports = function(router){
 
 
-//inser to login booking
-//router.post('/login/booking/insert',book.LoginBooking);
+
 
 //insert to booking
 router.post('/booking/insert',book.insert);

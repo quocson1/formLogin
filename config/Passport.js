@@ -34,21 +34,9 @@ passport.use(new LocalStrategy({
     //get User by UserName
     getUserByUsername(UserName,function(err,user){
 
-    // Validation
-    req.checkBody('username','err username').notEmpty();
-    req.checkBody('username','username khong ton tai').equals(user);
-    req.checkBody('password','err password').notEmpty().isLength({min:4});
-    var er = req.validationErrors();
-    if(er){
-      var messages = [];
-      er.forEach(function(error){
-        messages.push(error.msg);
-      });
-      return done(null,false,req.flash('mes',messages));
-    }
       if(err) throw err;
       if(!user){
-        return done(null,false,('mess','nguoi dung khong ton tai'));
+        return done(null,false);
       }
       //compare pass now and password DB
       comparePassword(PassWord,user.PassWord,function(err,isMatch){

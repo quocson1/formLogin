@@ -43,6 +43,10 @@ app.use('/',(router));
 //app.use('/',(router1));
 
 require('./config/Passport.js')(passport);
+//error handing middleware
+app.use(function (err, req, res, next) {	
+  res.status(404).send(err);
+});
 
 
 //connect
