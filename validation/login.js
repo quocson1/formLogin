@@ -5,9 +5,9 @@ exports.checkLogin = function check(req,res,next){
 
     // Validation
   req.checkBody('username','username not null').notEmpty();
-  req.checkBody('username','user name Contains invalid characters').matches(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/, "i");
+  req.checkBody('username','user name Contains invalid characters').matches(/^(?=.*[a-z])[0-9a-zA-Z]/, "i");
   req.checkBody('password','password leght > 3 char').notEmpty().isLength({min:4});
-  req.checkBody('password','password Contains invalid characters').matches(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/, "i");
+  req.checkBody('password','Passwords must have one capital letter and a number').matches(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/, "i");
  // err
  var er = req.validationErrors();
   if(er){
@@ -15,15 +15,9 @@ exports.checkLogin = function check(req,res,next){
       er.forEach(function(error){
         messages.push(error.msg);
       });
-      
-      //next err to user
+      //next error to user
       next(messages);
-
     }
-
     //secessful
-    next();
-
-     
-    
+    next();  
 }

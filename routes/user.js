@@ -8,12 +8,8 @@ router.get('/',UserController.HomePage);
 //post signup
 router.post('/signup',UserController.Signup);
 
-
-//check login
-router.post('/login',validationLogin.checkLogin);
-
-//post login
-router.post('/login',UserController.Login);
+//check login if (true) => login , else faile :)
+router.post('/login',validationLogin.checkLogin,UserController.Login);
 
 //logout
 router.get('/Logout',UserController.Logout);
