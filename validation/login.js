@@ -21,3 +21,4 @@ exports.checkLogin = function check(req,res,next){
     //secessful
     next();  
 }
+

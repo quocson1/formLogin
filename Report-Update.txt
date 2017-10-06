@@ -1,0 +1,11 @@
+﻿-Nội dung update ngày 6/10.
+
+-Update Token Login
+ +file  Routes/user.js : line 16 .
+ +file  Create token when login : config/Passprot.js -> line 50,51
+ +file  Controller/UserControler.js : line 53 -> 83
+
+-Update validation 
+ +file  Router/user.js line 12
+ +//error handing middleware -> file Server.js line 51,53
+

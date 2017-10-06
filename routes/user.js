@@ -11,6 +11,9 @@ router.post('/signup',UserController.Signup);
 //check login if (true) => login , else faile :)
 router.post('/login',validationLogin.checkLogin,UserController.Login);
 
+
+//Route Middleware to Protect API Routes token
+router.get('/token',UserController.CheckToken,UserController.HomePage);
 //logout
 router.get('/Logout',UserController.Logout);
 

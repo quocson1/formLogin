@@ -1,6 +1,8 @@
 const LocalStrategy = require('passport-local').Strategy;
 const ac = require('../models/User/Data');
 var bcrypt =require('bcryptjs');
+var jwt    = require('jsonwebtoken');
+
 module.exports = function(passport){
 
 
@@ -38,11 +40,23 @@ passport.use(new LocalStrategy({
       if(!user){
         return done(null,false);
       }
+
       //compare pass now and password DB
       comparePassword(PassWord,user.PassWord,function(err,isMatch){
         if(err) throw err;
         if(isMatch){
-          return done(null,user);
+          console.log(user.id);
+         // create a token with only our given payload ,Signing a token with 1 hour of expiration:
+          var token = jwt.sign({id: user.id,
+            exp: Math.floor(Date.now() / 1000) + (60 * 60)},'quocson');
+
+          var jsonToken = {
+            token: token,
+            success: true
+          }
+          console.log(jsonToken);
+          //send messenger to user id
+          return done(null,user,req.flash('user' ,user.id));
         }else{
           return done(null,false);
         }
@@ -61,3 +75,11 @@ passport.deserializeUser(function(id, done) {
   });
 });
 }
+
+
+exports.son = {
+
+    'secret': 'ilovescotchyscotch',
+    'database': 'mongodb://noder:noderauth&54;proximus.modulusmongo.net:27017/so9pojyN'
+
+};

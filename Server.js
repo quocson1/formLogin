@@ -1,3 +1,7 @@
+
+// =======================
+// get the packages we need ============
+// =======================
 const express = require('express');
 const app = express();
 const path = require('path');
@@ -7,13 +11,15 @@ const router = express.Router();
 const validator = require('express-validator');
 //const index = require('./routes/index') (router);
 const passport = require('passport');
-var flash = require('connect-flash');
-var session = require('express-session');
+const flash = require('connect-flash');
+const session = require('express-session');
 
-var mongoose = require('mongoose');
+const morgan      = require('morgan');
+const mongoose = require('mongoose');
+
 
 // Set Static Folder
-var viewPath = path.join(__dirname, 'view');
+const viewPath = path.join(__dirname, 'view');
 
 //view ejs
 app.set('views', viewPath);
@@ -38,7 +44,6 @@ require('./routes/user') (router);
 require('./routes/booking')(router);
 app.use('/',(router));
 
-
 //app.use('/',(router1));
 require('./config/Passport.js')(passport);
 
@@ -48,9 +53,12 @@ app.use(function (err, req, res, next) {
 });
 
 
+// use morgan to log requests to the console
+app.use(morgan('dev'));
+
 //connect
-var port = process.env.PORT || 3001;
-var mongoose = require('mongoose');
+const port = process.env.PORT || 3000;
+//connect mongo
 mongoose.Promise = require('bluebird');
 mongoose.connect('mongodb://localhost:27017/data',function(err){
 	if(err){
